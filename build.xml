@@ -20,17 +20,16 @@
     <javac srcdir="${src}" destdir="${build}"/>
   </target>
 
-  <target name="dist" depends="compile"
-        description="generate the distribution">
+  <target name="dist" depends="compile" description="generate the distribution" >
     <!-- Create the distribution directory -->
-    <mkdir dir="${dist}"/>
+    <mkdir dir="${dist}/lib"/>
 
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar destfile="${dist}/Me.jar" basedir="${build}" />
-	<manifest>
-	 <attribute name="Main-Class" value="Me" />
-	</manifest>
-    </jar> 
+    <jar jarfile="${dist}/Me.jar" basedir="${build}" >
+      <manifest>
+	    <attribute name="Main-Class" value="Me" />
+	  </manifest>
+    </jar>	 
   </target>
 
   <target name="clean"
