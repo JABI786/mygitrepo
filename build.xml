@@ -29,7 +29,7 @@
     <jar jarfile="${dist}/Me.jar" basedir="${build}"/>
 	<manifest>
 	 <attribute name="Main-Class" value="Me" />
-	<manifest/>
+	</manifest>
 	<jar/>
   </target>
 
