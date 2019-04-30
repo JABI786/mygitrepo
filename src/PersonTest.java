@@ -3,7 +3,7 @@ import static or.junit.Assert.assertEquals;
 
 public class PersonAgeTest
   { 
-  Person jabir = new Person('jabir',39);
+  Person jabir = new Person("jabir",39);
   
   @Test
   public void testAgenextyear()
