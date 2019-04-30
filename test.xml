@@ -8,7 +8,6 @@
   <property name="report" location="reports"/>
 
   <path id="class.path">
-    <!-- Create the time stamp -->
     <pathelement location="./lib/junit-4.10.jar" />
     <pathelement location="${build}" />
   </path>
@@ -30,6 +29,7 @@
 
   <target name="test" depends="clean,makedir,compile" description="generate reports" >
     <junit printsummary="yes" fork="true" >
+	  <classpath refid="class.path" />
       <test name="PersonAgeTest" todir="${report}" outfile="result" >
 	    <formatter type="xml" />
 	  </test>	
@@ -40,5 +40,6 @@
     <description>Main Target</description>
   </target>
 </project>
+
 
 
