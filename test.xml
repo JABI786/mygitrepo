@@ -1,0 +1,44 @@
+<project name="PersonTest" default="main" basedir=".">
+  <description>
+    simple test build file for java
+  </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="report" location="reports"/>
+
+  <path id="class.path">
+    <!-- Create the time stamp -->
+    <pathelement location="./lib/junit-4.10.jar" />
+    <pathelement location="${build}" />
+  </path>
+  <target name="clean" description="clean up">
+    <!-- Delete the ${build} and ${report} directory trees if exists -->
+    <delete dir="${build}"/>
+    <delete dir="${report}"/>
+  </target>
+  <target name="makedir" despends="clean">
+    <mkdir dir="${build}"/>
+    <mkdir dir="${report}"/>
+  </target>  
+  <target name="compile" depends="makedir" description="compile the source">
+    <!-- Compile the Java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}" >
+	  <classpath refid="class.path" />
+	</javac>  
+  </target>
+
+  <target name="test" depends="clean,mkdir,compile" description="generate reports" >
+    <junit jprintsummary="yes" fork="true" >
+      <test name="PersonTest" todir="${report}" output="result" >
+	    <formatter type="xml" />
+	  </test>	
+    </junit>	 
+  </target>
+
+  <target name="main" depends="test">
+    <description>Main Target</description>
+  </target>
+</project>
+
+
