@@ -10,7 +10,7 @@
       
    post   {
      always {
-	    archive 'dist/lib/*.jar'
+	    archive 'dist/*.jar'
 		    }
 		   }	
 		  }
