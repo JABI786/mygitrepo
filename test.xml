@@ -28,7 +28,7 @@
 	</javac>  
   </target>
 
-  <target name="test" depends="clean,mkdir,compile" description="generate reports" >
+  <target name="test" depends="clean,makedir,compile" description="generate reports" >
     <junit jprintsummary="yes" fork="true" >
       <test name="PersonTest" todir="${report}" output="result" >
 	    <formatter type="xml" />
