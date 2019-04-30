@@ -30,7 +30,7 @@
 
   <target name="test" depends="clean,makedir,compile" description="generate reports" >
     <junit jprintsummary="yes" fork="true" >
-      <test name="PersonTest" todir="${report}" output="result" >
+      <test name="PersonAgeTest" todir="${report}" output="result" >
 	    <formatter type="xml" />
 	  </test>	
     </junit>	 

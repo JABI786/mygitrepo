@@ -7,6 +7,12 @@
   <property name="build" location="build"/>
   <property name="dist" location="dist"/>
 
+  <path id="class.path">
+    <pathelement location="./lib/junit-4.10.jar" />
+    <pathelement location="${build}" />
+  </path>
+
+  
   <target name="init">
     <!-- Create the time stamp -->
     <tstamp/>
@@ -39,4 +45,5 @@
     <delete dir="${dist}"/>
   </target>
 </project>
+
 
