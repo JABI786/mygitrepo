@@ -17,7 +17,7 @@
     <delete dir="${build}"/>
     <delete dir="${report}"/>
   </target>
-  <target name="makedir" despends="clean">
+  <target name="makedir" depends="clean">
     <mkdir dir="${build}"/>
     <mkdir dir="${report}"/>
   </target>  
