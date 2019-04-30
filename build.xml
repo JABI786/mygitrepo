@@ -28,7 +28,7 @@
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
     <jar jarfile="${dist}/Me.jar" basedir="${build}"/>
 	<manifest>
-	 <attribute name="Main-Class" value="Me"
+	 <attribute name="Main-Class" value="Me" />
 	<manifest/>
 	<jar/>
   </target>
