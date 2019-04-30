@@ -30,7 +30,7 @@
 	<manifest>
 	 <attribute name="Main-Class" value="Me" />
 	</manifest>
-	</jar>
+    </jar> 
   </target>
 
   <target name="clean"
