@@ -14,7 +14,7 @@ pipeline {
           }
      stage ('deploy') {
        steps{
-         sh 'cp dist/Me.jar /usr/share/apache2/Person/all/'
+         sh 'cp dist/Me.jar /usr/share/apache2/default-site/Person/all/'
             }
         }
        } 
