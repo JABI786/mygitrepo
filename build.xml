@@ -36,7 +36,7 @@
     <mkdir dir="${dist}/lib"/>
 
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/Me_${BUILD_NUMBER}.jar" basedir="${build}" >
+    <jar jarfile="${dist}/Me.jar" basedir="${build}" >
       <manifest>
 	    <attribute name="Main-Class" value="Me" />
 	  </manifest>
