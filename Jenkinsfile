@@ -16,8 +16,14 @@ pipeline {
        steps{
          sh 'cp dist/Me.jar /var/www/html/Person/all/'
             }
-        }
-       } 
+         } 
+     stage ("Running on Ubuntu") {
+       steps{
+         sh "wget http://192.168.213.146/Person/all/Me.jar"
+         sh "java -jar Me.jar jabir 39"
+            }
+         }
+       }
    post   {
      always {
 	    archive 'dist/*.jar'
