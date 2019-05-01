@@ -6,7 +6,7 @@ pipeline {
 	     sh 'ant -f test.xml -v'
 		 junit 'reports/result.xml'
 		    }
-		  }  	
+		   }  	
      stage ('build') {
        steps{
          sh 'ant -f build.xml -v'
@@ -17,7 +17,7 @@ pipeline {
          sh 'cp dist/Me_${BUILD_NUMBER}.jar /usr/share/apache2/default-site/Person/all'
             }
         }
-        
+       } 
    post   {
      always {
 	    archive 'dist/*.jar'
