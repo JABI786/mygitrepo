@@ -1,4 +1,4 @@
- pipeline {
+pipeline {
    agent any
    stages {
      stage ('Unit Test'){
@@ -13,10 +13,17 @@
             }
           }
         }
-      
+     stage ('deploy') {
+       steps{
+         sh 'cp dist/Me_${BUILD_NUMBER}.jar /usr/share/apache2/default-site/Person/all'
+            }
+          }
+        }
    post   {
      always {
 	    archive 'dist/*.jar'
 		    }
 		   }	
 		  }
+
+
