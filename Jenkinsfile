@@ -24,7 +24,7 @@ pipeline {
             }
          }
        }
-    stage ("Running on Ubuntu") {
+    stage ("Running on Centos") {
        agent {
          Docker 'jabi786/centos6-1.8.0-openjdk'
             }
