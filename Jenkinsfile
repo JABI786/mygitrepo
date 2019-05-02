@@ -26,7 +26,7 @@ pipeline {
        }
     stage ("Running on Centos") {
        agent {
-         Docker 'jabi786/centos6-1.8.0-openjdk'
+         docker 'jabi786/centos6-1.8.0-openjdk'
             }
        steps{
          sh "wget http://192.168.213.146/Person/all/Me.jar"
