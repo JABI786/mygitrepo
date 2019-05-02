@@ -33,6 +33,12 @@ pipeline {
          sh "java -jar Me.jar jabir 39"
             }
          }
+   stage ('Promote to Green') {
+       steps{
+         sh 'cp /var/www/html/Person/all/Me.jar /var/www/html/Person/green/'
+            }
+         }
+
        }
 
    post   {
