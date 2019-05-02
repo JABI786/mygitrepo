@@ -23,7 +23,7 @@ pipeline {
          sh "java -jar Me.jar jabir 39"
             }
          }
-       }
+      
     stage ("Running on Centos") {
        agent {
          docker 'jabi786/centos6-1.8.0-openjdk'
@@ -41,5 +41,4 @@ pipeline {
 		    }
 		   }	
 		  }
-
 
