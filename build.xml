@@ -1,11 +1,11 @@
-<project name="MyFirstJavaProject" default="dist" basedir=".">
+<project name="MyFirstJavaProject" default="main" basedir=".">
   <description>
     simple example build file
   </description>
   <!-- set global properties for this build -->
-  <property name="src" location="src"/>
-  <property name="build" location="build"/>
-  <property name="dist" location="dist"/>
+  <property name="src.dir" location="src" />
+  <property name="build.dir" location="build" />
+  <property name="dist.dir" location="dist" />
 
   <path id="class.path">
     <pathelement location="./lib/junit-4.10.jar" />
@@ -14,33 +14,36 @@
   <target name="clean"
         description="clean up">
     <!-- Delete the ${build} and ${dist} directory trees -->
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
+    <delete dir="${build.dir}"/>
+    <delete dir="${dist.dir}"/>
   </target>
   
-  <target name="init">
-    <!-- Create the time stamp -->
-    <tstamp/>
-    <!-- Create the build directory structure used by compile -->
-    <mkdir dir="${build}"/>
+  <!-- Creates the  build, docs and dist directory-->
+  <target name="makedir">
+    <mkdir dir="${build.dir}" />
+    <mkdir dir="${dist.dir}" />
   </target>
 
-  <target name="compile" depends="init"
+  <target name="compile" depends="clean,makedir"
         description="compile the source">
     <!-- Compile the Java code from ${src} into ${build} -->
-    <javac srcdir="${src}" destdir="${build}"/>
+    <javac srcdir="${src.dir}" destdir="${build.dir}">
+      <classpath refid="class.path" />
+    </javac>
   </target>
 
-  <target name="dist" depends="compile" description="generate the distribution" >
-    <!-- Create the distribution directory -->
-    <mkdir dir="${dist}/lib"/>
-
-    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/Me.jar" basedir="${build}" >
+ <!--Creates the deployable jar file  -->
+  <target name="jar" depends="compile">
+    <jar destfile="${dist.dir}/Me_${env.BUILD_NUMBER}.jar" basedir="${build.dir}">
       <manifest>
-	    <attribute name="Main-Class" value="Me" />
-	  </manifest>
-    </jar>	 
+        <attribute name="Main-Class" value="Me" />
+      </manifest>
+    </jar>
   </target>
+
+  <target name="main" depends="compile, jar">
+    <description>Main target</description>
+  </target>
+
 </project>
 
