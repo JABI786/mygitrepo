@@ -3,7 +3,7 @@
     simple example build file
   </description>
   <!-- set global properties for this build -->
-  <property environment="env"/>
+  <property environment="env" />
   <property name="src.dir" location="src" />
   <property name="build.dir" location="build" />
   <property name="dist.dir" location="dist" />
