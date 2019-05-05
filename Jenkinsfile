@@ -20,8 +20,8 @@ pipeline {
          } 
      stage ("Running on Ubuntu") {
        steps{
-         sh "wget http://192.168.213.146/Person/all/Me.jar"
-         sh "java -jar Me.jar jabir 39"
+         sh "wget http://127.0.0.1/Person/all/Me_${BUILD_NUMBER}.jar"
+         sh "java -jar Me_${BUILD_NUMBER}.jar jabir 39"
             }
          }
       
@@ -30,13 +30,13 @@ pipeline {
          docker 'jabi786/centos6-1.8.0-openjdk'
             }
        steps{
-         sh "curl http://192.168.213.146/Person/all/Me.jar --output Me.jar"
-         sh "java -jar Me.jar jabir 39"
+         sh "curl http://192.168.213.128/Person/all/Me_${BUILD_NUMBER}.jar --output Me_${BUILD_NUMBER}.jar"
+         sh "java -jar Me_${BUILD_NUMBER}.jar jabir 39"
             }
          }
    stage ('Promote to Green') {
        steps{
-         sh 'cp /var/www/html/Person/all/Me.jar /var/www/html/Person/green/'
+         sh 'cp /var/www/html/Person/all/Me_${BUILD_NUMBER}.jar /var/www/html/Person/green/'
             }
          }
 
