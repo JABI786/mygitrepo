@@ -19,13 +19,13 @@ pipeline {
      stage ('deploy') {
         steps{
          sh "[ -d '/var/www/html/Person/all/${BRANCH_NAME}' ] || mkdir -p /var/www/html/Person/all/${BRANCH_NAME}"
-         sh 'cp dist/Me_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /var/www/html/Person/all/${BRANCH_NAME}'
+         sh 'cp dist/Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/Person/all/${BRANCH_NAME}'
             }
          } 
      stage ("Running on Ubuntu") {
        steps{
-         sh "wget http://127.0.0.1/Person/all/${BRANCH_NAME}/Me_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
-         sh "java -jar Me_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar jabir 39"
+         sh "wget http://127.0.0.1/Person/all/${BRANCH_NAME}/Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+         sh "java -jar Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar jabir 39"
             }
          }
       
@@ -34,8 +34,8 @@ pipeline {
          docker 'jabi786/centos6-1.8.0-openjdk'
             }
        steps{
-         sh "curl http://192.168.213.131/Person/all/${BRANCH_NAME}/Me_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar --output Me_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
-         sh "java -jar Me_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar jabir 39"
+         sh "curl http://192.168.213.131/Person/all/${BRANCH_NAME}/Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar --output Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+         sh "java -jar Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar jabir 39"
             }
          }
    stage ('Promote to Green') {
@@ -44,7 +44,7 @@ pipeline {
           }
 
        steps{
-         sh 'cp /var/www/html/Person/all/${BRANCH_NAME}/Me_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /var/www/html/Person/green/'
+         sh 'cp /var/www/html/Person/all/${BRANCH_NAME}/Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/Person/green/'
             }
 
        }
@@ -64,8 +64,8 @@ pipeline {
          echo 'pushing to origin  master'
          sh 'git push origin master'
          echo 'tagging the release'
-         sh 'git tag Me_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}'
-         sh 'git push origin Me_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}'
+         sh 'git tag Me_${MAJOR_VERSION}.${BUILD_NUMBER}'
+         sh 'git push origin Me_${MAJOR_VERSION}.${BUILD_NUMBER}'
          } 
        }
       }
