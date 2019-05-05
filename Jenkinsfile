@@ -37,7 +37,7 @@ pipeline {
          }
    stage ('Promote to Green') {
        when {
-           branch master
+           branch 'master'
           }
 
        steps{
