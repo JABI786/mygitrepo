@@ -14,8 +14,8 @@ pipeline {
           }
      stage ('deploy') {
        steps{
-         sh "if ![ -d '/var/www/html/Person/all/${BRANCH_NAME}' ]; then mkdir -p /var/www/html/Person/all/${BRANCH_NAME}; fi"
-         sh 'cp dist/Me.jar /var/www/html/Person/all/${BRANCH_NAME}/Me.jar'
+         sh "[ -d '/var/www/html/Person/all/${BRANCH_NAME}' ] || mkdir -p /var/www/html/Person/all/${BRANCH_NAME}"
+         sh 'cp dist/Me.jar /var/www/html/Person/all/${BRANCH_NAME}/'
             }
          } 
      stage ("Running on Ubuntu") {
