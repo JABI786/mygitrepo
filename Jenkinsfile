@@ -19,7 +19,7 @@ pipeline {
          } 
      stage ("Running on Ubuntu") {
        steps{
-         sh "wget http://192.168.213.146/Person/all/Me.jar"
+         sh "wget http://127.0.0.1/Person/all/Me.jar"
          sh "java -jar Me.jar jabir 39"
             }
          }
