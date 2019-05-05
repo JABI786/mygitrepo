@@ -30,7 +30,7 @@ pipeline {
          docker 'jabi786/centos6-1.8.0-openjdk'
             }
        steps{
-         sh "curl http://192.168.213.128/Person/all/Me_${BUILD_NUMBER}.jar --output Me_${BUILD_NUMBER}.jar"
+         sh "curl http://192.168.213.131/Person/all/Me_${BUILD_NUMBER}.jar --output Me_${BUILD_NUMBER}.jar"
          sh "java -jar Me_${BUILD_NUMBER}.jar jabir 39"
             }
          }
