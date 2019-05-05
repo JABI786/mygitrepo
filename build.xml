@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project name="MyFirstJavaProject" default="main" basedir=".">
   <description>
     simple example build file
