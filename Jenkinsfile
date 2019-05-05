@@ -15,7 +15,7 @@ pipeline {
           }
      stage ('deploy') {
        steps{
-         sh 'cp dist/Me_${env.BUILD_NUMBER}.jar /var/www/html/Person/all/'
+         sh 'cp dist/Me_${BUILD_NUMBER}.jar /var/www/html/Person/all/'
             }
          } 
      stage ("Running on Ubuntu") {
