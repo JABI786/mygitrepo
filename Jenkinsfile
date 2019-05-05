@@ -14,12 +14,13 @@ pipeline {
           }
      stage ('deploy') {
        steps{
+         sh "if ![ -d '/var/www/html/Person/all/${env.BRANCH_NAME}' ]; then mkdir /var/www/html/Person/all/${env.BRANCH_NAME}; fi"
          sh 'cp dist/Me.jar /var/www/html/Person/all/'
             }
          } 
      stage ("Running on Ubuntu") {
        steps{
-         sh "wget http://127.0.0.1/Person/all/Me.jar"
+         sh "wget http://127.0.0.1/Person/all/${env.BRANCH_NAME}/Me.jar"
          sh "java -jar Me.jar jabir 39"
             }
          }
@@ -29,13 +30,13 @@ pipeline {
          docker 'jabi786/centos6-1.8.0-openjdk'
             }
        steps{
-         sh "curl http://192.168.213.131/Person/all/Me.jar --output Me.jar"
+         sh "curl http://192.168.213.131/Person/all/${env.BRANCH_NAME}/Me.jar --output Me.jar"
          sh "java -jar Me.jar jabir 39"
             }
          }
    stage ('Promote to Green') {
        steps{
-         sh 'cp /var/www/html/Person/all/Me.jar /var/www/html/Person/green/'
+         sh 'cp /var/www/html/Person/all/${env.BRANCH_NAME}/Me.jar /var/www/html/Person/green/'
             }
          }
 
