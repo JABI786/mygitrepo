@@ -47,7 +47,7 @@ pipeline {
        }
    stage ('Promote develop Branch to Master') {
        when {
-           branch develop
+           branch 'develop'
           }
        steps{
          echo 'stashing any local changes'
