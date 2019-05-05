@@ -15,7 +15,7 @@ pipeline {
           }
      stage ('deploy') {
         steps{
-         sh "[ -d '/var/www/html/Person/all/${BRANCH_NAME}' ] || mkdir /var/www/html/Person/all/${BRANCH_NAME}"
+         sh "[ -d '/var/www/html/Person/all/${BRANCH_NAME}' ] || mkdir -p /var/www/html/Person/all/${BRANCH_NAME}"
          sh 'cp dist/Me_${BUILD_NUMBER}.jar /var/www/html/Person/all/${BRANCH_NAME}'
             }
          } 
