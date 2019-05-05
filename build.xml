@@ -37,6 +37,8 @@
     <jar destfile="${dist.dir}\Me_${BUILD_NUMBER}.jar" basedir="${build.dir}">
       <manifest>
         <attribute name="Main-Class" value="Me" />
+        <attribute name="Implementation-Version" value="1.0.0 today" />
+        <attribute name="Implementation-Vendor"  value="JABIR HUSSAIN C P" />
       </manifest>
     </jar>
   </target>
@@ -46,4 +48,5 @@
   </target>
 
 </project>
+
 
