@@ -15,8 +15,8 @@ pipeline {
           }
      stage ('deploy') {
         steps{
-         sh "if ![ -d '/var/www/html/rectangles/all/${env.BRANCH_NAME}' ]; then mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}; fi"
-         sh 'cp dist/Me_${BUILD_NUMBER}.jar /var/www/html/Person/all/'
+         sh "if ![ -d '/var/www/html/Person/all/${env.BRANCH_NAME}' ]; then mkdir /var/www/html/Person/all/${env.BRANCH_NAME}; fi"
+         sh 'cp dist/Me_${BUILD_NUMBER}.jar /var/www/html/Person/all/${env.BRANCH_NAME}'
             }
          } 
      stage ("Running on Ubuntu") {
@@ -41,7 +41,7 @@ pipeline {
           }
 
        steps{
-         sh 'cp /var/www/html/Person/all/Me_${BUILD_NUMBER}.jar /var/www/html/Person/green/'
+         sh 'cp /var/www/html/Person/all/${env.BRANCH_NAME}/Me_${BUILD_NUMBER}.jar /var/www/html/Person/green/'
             }
 
        }
