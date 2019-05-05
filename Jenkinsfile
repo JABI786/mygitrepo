@@ -14,13 +14,14 @@ pipeline {
             }
           }
      stage ('deploy') {
-       steps{
+        steps{
+         sh "if ![ -d '/var/www/html/rectangles/all/${env.BRANCH_NAME}' ]; then mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}; fi"
          sh 'cp dist/Me_${BUILD_NUMBER}.jar /var/www/html/Person/all/'
             }
          } 
      stage ("Running on Ubuntu") {
        steps{
-         sh "wget http://127.0.0.1/Person/all/Me_${BUILD_NUMBER}.jar"
+         sh "wget http://127.0.0.1/Person/all/${env.BRANCH_NAME}/Me_${BUILD_NUMBER}.jar"
          sh "java -jar Me_${BUILD_NUMBER}.jar jabir 39"
             }
          }
@@ -30,18 +31,38 @@ pipeline {
          docker 'jabi786/centos6-1.8.0-openjdk'
             }
        steps{
-         sh "curl http://192.168.213.131/Person/all/Me_${BUILD_NUMBER}.jar --output Me_${BUILD_NUMBER}.jar"
+         sh "curl http://192.168.213.131/Person/all/${env.BRANCH_NAME}/Me_${BUILD_NUMBER}.jar --output Me_${BUILD_NUMBER}.jar"
          sh "java -jar Me_${BUILD_NUMBER}.jar jabir 39"
             }
          }
    stage ('Promote to Green') {
+       when {
+           branch master
+          }
+
        steps{
          sh 'cp /var/www/html/Person/all/Me_${BUILD_NUMBER}.jar /var/www/html/Person/green/'
             }
-         }
 
        }
-
+   stage ('Promote develop Branch to Master') {
+       when {
+           branch develop
+          }
+       steps{
+         echo 'stashing any local changes'
+         sh 'git stash'
+         echo 'checking out develop branch'
+         sh 'git checkout develop'
+         echo 'checking out master branch'
+         sh 'git checkout master'
+         echo 'Merging develop into master branch'
+         sh ' git merge develop'
+         echo 'pushing to origin master'
+         sh 'git push origin master'
+         } 
+       }
+      }
    post   {
      always {
 	    archive 'dist/*.jar'
