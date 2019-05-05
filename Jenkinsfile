@@ -15,7 +15,7 @@ pipeline {
      stage ('deploy') {
        steps{
          sh "if ![ -d '/var/www/html/Person/all/${env.BRANCH_NAME}' ]; then mkdir /var/www/html/Person/all/${env.BRANCH_NAME}; fi"
-         sh 'cp dist/Me.jar /var/www/html/Person/all/'
+         sh 'cp dist/Me.jar /var/www/html/Person/${env.BRANCH_NAME}/all/'
             }
          } 
      stage ("Running on Ubuntu") {
