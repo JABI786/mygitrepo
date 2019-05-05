@@ -9,6 +9,7 @@ pipeline {
 		   }  	
      stage ('build') {
        steps{
+         sh 'echo build number is ${BUILD_NUMBER} '
          sh 'ant -f build.xml -v'
             }
           }
