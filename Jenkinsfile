@@ -67,9 +67,29 @@ pipeline {
          echo 'tagging the release'
          sh 'git tag Me_${MAJOR_VERSION}.${BUILD_NUMBER}'
          sh 'git push origin Me_${MAJOR_VERSION}.${BUILD_NUMBER}'
+         }
+      post {
+        success {
+          emailext(
+            subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Development Promoted to Master",
+            body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Development Promoted to Master":</p>
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+            to: "brandon@linuxacademy.com"
+          )
+           }
          } 
        }
       }
+     post {
+    failure {
+      emailext(
+        subject: "${JOB_NAME} [${BUILD_NUMBER}] Failed!",
+        body: """<p>'${JOB_NAME} [${BUILD_NUMBER}]' Failed!":</p>
+        <p>Check console output at &QUOT;<a href='${BUILD_URL}'>${JOB_NAME} [${BUILD_NUMBER}]</a>&QUOT;</p>""",
+        to: "cpjabir786@gmail.com"
+      )
+      }
+     }
    post   {
      always {
 	    archive 'dist/*.jar'
