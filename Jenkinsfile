@@ -15,7 +15,7 @@ pipeline {
              echo "My Branch name is :  ${BRANCH_NAME}"
              script {
                def mylib = new git.gitStuff();
-               echo "My commit : ${mylib(${WORKSPACE}/.git)}"
+               echo "My commit : ${mylib("${WORKSPACE}/.git")}"
                }
               }
              } 
