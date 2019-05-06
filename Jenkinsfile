@@ -10,14 +10,16 @@ pipeline {
        sayHello 'AwesomeJabir!'
           }
          }
-     stage ('Git Information'){
+     stage ('Browser Information'){
            steps{
              echo "My Branch name is :  ${BRANCH_NAME}"
-             script {
-               def mylib = new jabirjenkins.git.gitStuff();
-               echo "My commit : ${mylib("${WORKSPACE}/.git")}"
+            script {
+                    def browsers = ['chrome', 'firefox']
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                    }
+                }              
                }
-              }
              } 
 
      stage ('Unit Test'){
