@@ -89,7 +89,6 @@ pipeline {
         to: "cpjabir786@gmail.com"
         )
           }
-        }
     always {
 	    archive 'dist/*.jar'
 	    }
