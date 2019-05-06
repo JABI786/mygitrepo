@@ -34,7 +34,7 @@ pipeline {
          docker 'jabi786/centos6-1.8.0-openjdk'
             }
        steps{
-         sh "curl http://192.168.213.131/Person/all/${BRANCH_NAME}/Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar --output Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+         sh "curl http://192.168.213.130/Person/all/${BRANCH_NAME}/Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar --output Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
          sh "java -jar Me_${MAJOR_VERSION}.${BUILD_NUMBER}.jar jabir 39"
             }
          }
@@ -89,9 +89,6 @@ pipeline {
         to: "cpjabir786@gmail.com"
         )
           }
-    always {
-	    archive 'dist/*.jar'
-	    }
      }	
   }
 
