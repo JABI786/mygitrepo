@@ -10,6 +10,16 @@ pipeline {
        sayHello 'AwesomeJabir!'
           }
          }
+     stage ('Git Information'){
+           steps{
+             echo "My Branch name is :  ${BRANCH_NAME}"
+             script {
+               def mylib = new git.gitStuff();
+               echo "My commit : ${mylib(${WORKSPACE}/.git)}"
+               }
+              }
+             } 
+
      stage ('Unit Test'){
 	   steps{
 	     sh 'ant -f test.xml -v'
