@@ -7,7 +7,7 @@ pipeline {
 
      stage ('Say Hello'){
       steps {  
-       SayHello 'AwesomeJabir!'
+       sayHello 'AwesomeJabir!'
           }
          }
      stage ('Unit Test'){
