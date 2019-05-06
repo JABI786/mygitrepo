@@ -87,13 +87,12 @@ pipeline {
         body: """<p>'${JOB_NAME} [${BUILD_NUMBER}]' Failed!":</p>
         <p>Check console output at &QUOT;<a href='${BUILD_URL}'>${JOB_NAME} [${BUILD_NUMBER}]</a>&QUOT;</p>""",
         to: "cpjabir786@gmail.com"
-      )
-      }
-     }
-   post   {
-     always {
+        )
+          }
+        }
+    always {
 	    archive 'dist/*.jar'
-		    }
-		   }	
-		  }
+	    }
+     }	
+  }
 
