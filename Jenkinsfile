@@ -4,6 +4,12 @@ pipeline {
      MAJOR_VERSION = 1 
      }
    stages {
+
+     stage ('Say Hello'){
+      steps {  
+       SayHello 'AwesomeJabir!'
+          }
+         }
      stage ('Unit Test'){
 	   steps{
 	     sh 'ant -f test.xml -v'
